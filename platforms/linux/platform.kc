@@ -1,0 +1,15 @@
+menu "Window System Interface"
+	config WSI_XCB
+		default y
+		bool "X.Org (libxcb)"
+
+	config WSI_WAYLAND
+		default y
+		bool "Wayland (libwayland-client)"
+
+	if WSI_WAYLAND
+		config WAYLAND_XDG_DIR
+			default "/usr/share/wayland-protocols/stable/xdg-shell"
+			string "Wayland xdg-shell source directory"
+	endif
+endmenu # Window System Interface

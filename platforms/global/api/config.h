@@ -1,0 +1,52 @@
+#pragma once
+
+#include <autoconf.h>
+
+#define CONFIG_WSI_TYPE RK_WSI_TYPE_MIN
+#define CONFIG_RENDERER_TYPE RK_RENDERER_TYPE_MIN
+
+#ifndef CONFIG_RENDERER_FULLSCREEN
+#define CONFIG_RENDERER_FULLSCREEN false
+#endif
+
+#ifndef CONFIG_LOG_WARNING
+#define CONFIG_LOG_WARNING false
+#endif
+
+#ifndef CONFIG_LOG_INFO
+#define CONFIG_LOG_INFO false
+#endif
+
+#ifndef CONFIG_LOG_DEBUG
+#define CONFIG_LOG_DEBUG false
+#endif
+
+#ifndef CONFIG_LOG_COLOR
+#define CONFIG_LOG_COLOR false
+#endif
+
+#ifdef CONFIG_RENDERER_VULKAN
+#ifdef CONFIG_WSI_XCB
+#define VK_USE_PLATFORM_XCB_KHR
+#endif
+
+#ifdef CONFIG_WSI_WAYLAND
+#define VK_USE_PLATFORM_WAYLAND_KHR
+#endif
+
+#ifdef CONFIG_PLATFORM_WINDOWS
+#define VK_USE_PLATFORM_WIN32_KHR
+#endif
+
+#ifdef CONFIG_PLATFORM_ANDROID
+#define VK_USE_PLATFORM_ANDROID_KHR
+#endif
+
+#ifndef CONFIG_VULKAN_VALIDATION
+#define CONFIG_VULKAN_VALIDATION false
+#endif
+
+#ifndef CONFIG_VULKAN_DEBUG_MARKER
+#define CONFIG_VULKAN_DEBUG_MARKER false
+#endif
+#endif

@@ -1,0 +1,20 @@
+PLATFORM_DIR	:= $(PLATFORMS_DIR)/global
+VPATH			:= $(VPATH) $(PLATFORM_DIR)/source
+CFLAGS			:= $(CFLAGS) -I $(PLATFORM_DIR)/api
+
+SOURCES := filesystem.c
+SOURCES := $(SOURCES) asserts.c
+
+PC_SOURCES	:= main.c
+PC_SOURCES	:= $(PC_SOURCES) options.c
+PC_SOURCES	:= $(PC_SOURCES) logger.c
+
+ifdef CONFIG_PLATFORM_LINUX
+SOURCES := $(SOURCES) $(PC_SOURCES)
+endif
+
+ifdef CONFIG_PLATFORM_WINDOWS
+SOURCES := $(SOURCES) $(PC_SOURCES)
+endif
+
+OBJECTS := $(OBJECTS) $(patsubst %.c, $(BUILD_DIR)/%.o, $(SOURCES))

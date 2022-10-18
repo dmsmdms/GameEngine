@@ -1,0 +1,13 @@
+menu "Renderer Configuration"
+	menu "Renderer Backend"
+		config RENDERER_VULKAN
+			default y
+			bool "Vulkan (libvulkan)"
+	endmenu # Renderer Backend
+
+	source "$KCONFIG_ROOT_DIR_ENV/renderers/global/renderer.kc"
+
+	if RENDERER_VULKAN
+		source "$KCONFIG_ROOT_DIR_ENV/renderers/vulkan/renderer.kc"
+	endif
+endmenu # Renderer Configuration

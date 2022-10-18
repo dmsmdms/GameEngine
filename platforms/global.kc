@@ -1,0 +1,43 @@
+config OS_ENV
+	option env="OS"
+	string
+
+config OS_LINUX
+	default y if OS_ENV="Linux"
+	bool
+
+config OS_WINDOWS
+	default y if OS_ENV="Windows_NT"
+	bool
+
+choice
+	prompt "Target platform"
+	default PLATFORM_LINUX if OS_LINUX
+	default PLATFORM_WINDOWS if OS_WINDOWS
+
+	config PLATFORM_LINUX
+		depends on OS_LINUX
+		bool "Linux"
+
+	config PLATFORM_WINDOWS
+		depends on OS_WINDOWS
+		bool "Windows"
+
+	config PLATFORM_ANDROID
+		depends on OS_LINUX
+		bool "Android"
+endchoice
+
+source "$KCONFIG_ROOT_DIR_ENV/platforms/global/platform.kc"
+
+if PLATFORM_LINUX
+	source "$KCONFIG_ROOT_DIR_ENV/platforms/linux/platform.kc"
+endif
+
+if PLATFORM_WINDOWS
+	source "$KCONFIG_ROOT_DIR_ENV/platforms/windows/platform.kc"
+endif
+
+if PLATFORM_ANDROID
+	source "$KCONFIG_ROOT_DIR_ENV/platforms/android/platform.kc"
+endif

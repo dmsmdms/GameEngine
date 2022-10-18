@@ -1,0 +1,60 @@
+menu "View Regions"
+	if PLATFORM_LINUX || PLATFORM_WINDOWS
+		config RENDERER_MIN_WIDTH
+			int "Min width"
+			default 64
+
+		config RENDERER_WIDTH
+			int "Default width"
+			default 800
+
+		config RENDERER_MAX_WIDTH
+			int "Max width"
+			default 1920
+
+		config RENDERER_MIN_HEIGHT
+			int "Min height"
+			default 64
+
+		config RENDERER_HEIGHT
+			int "Default height"
+			default 600
+
+		config RENDERER_MAX_HEIGHT
+			int "Max height"
+			default 1080
+
+		config RENDERER_FULLSCREEN
+			bool "Enable fullscreen mode by default"
+			default n
+
+		config RENDERER_MIN_IMAGE_COUNT
+			int "Min image count"
+			default 2
+
+		config RENDERER_IMAGE_COUNT
+			int "Default image count"
+			default 3
+
+		config RENDERER_MAX_IMAGE_COUNT
+			int "Max image count"
+			default 4
+	endif # PLATFORM_LINUX || PLATFORM_WINDOWS
+	if PLATFORM_ANDROID
+		config RENDERER_WIDTH
+			default 0
+			int
+
+		config RENDERER_HEIGHT
+			default 0
+			int
+
+		config RENDERER_IMAGE_COUNT
+			int "Default image count"
+			default 3
+
+		config RENDERER_MAX_IMAGE_COUNT
+			default 4
+			int
+	endif # PLATFORM_ANDROID
+endmenu # View Regions

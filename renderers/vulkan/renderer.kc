@@ -1,0 +1,87 @@
+config VULKAN_INSTANCE_EXTENSIONS_MAX
+	default 3 if PLATFORM_LINUX || PLATFORM_WINDOWS
+	default 3 if PLATFORM_ANDROID && VULKAN_VALIDATION
+	default 2
+	int
+
+config VULKAN_DEVICE_QUEUE_FAMILIES_MAX
+	default 2 if PLATFORM_LINUX || PLATFORM_WINDOWS
+	default 1 if PLATFORM_ANDROID
+	int
+
+config VULKAN_DEVICE_EXTENSIONS_MAX
+	default 2 if PLATFORM_LINUX || PLATFORM_WINDOWS
+	default 1 if PLATFORM_ANDROID
+	int
+
+config VULKAN_SWAPCHAIN_LAYERS_COUNT
+	default 1
+	int
+
+if PLATFORM_WINDOWS
+	config VULKAN_SDK_PATH
+		default "C:/VulkanSDK"
+		string "Vulkan SDK path"
+endif
+
+menu "Debugging"
+	config VULKAN_VALIDATION
+		default n
+		bool "Enable validation layer by default"
+
+	config VULKAN_VALIDATION_LAYER
+		default "VK_LAYER_KHRONOS_validation"
+		string "Validation layer name"
+
+	config VULKAN_VALIDATION_TAGS_MAX
+		default 4
+		int
+
+	if PLATFORM_LINUX || PLATFORM_WINDOWS
+		config VULKAN_VALIDATION_LAYER_MIN
+			default 4
+			int
+
+		config VULKAN_VALIDATION_LAYER_MAX
+			default 32
+			int
+
+		config VULKAN_DEBUG_MARKER
+			default n
+			bool "Enable debug marker by default"
+	endif # PLATFORM_LINUX || PLATFORM_WINDOWS
+endmenu # Debugging
+
+menu "Pipeline"
+	config VULKAN_PIPELINE_CACHE_PATH
+		default "vk_pipeline.cache"
+		string "Pipeline cache file name"
+
+	menu "Pipeline cache permissions"
+		config VULKAN_PIPELINE_CACHE_READ_OWNER
+			default y
+			bool "Read by owner"
+
+		config VULKAN_PIPELINE_CACHE_WRITE_OWNER
+			default y
+			bool "Write by owner"
+
+		if PLATFORM_LINUX || PLATFORM_ANDROID
+			config VULKAN_PIPELINE_CACHE_READ_GROUP
+				default n
+				bool "Read by group"
+
+			config VULKAN_PIPELINE_CACHE_WRITE_GROUP
+				default n
+				bool "Write by group"
+
+			config VULKAN_PIPELINE_CACHE_READ_OTHER
+				default n
+				bool "Read by other"
+
+			config VULKAN_PIPELINE_CACHE_WRITE_OTHER
+				default n
+				bool "Write by other"
+		endif # PLATFORM_LINUX || PLATFORM_ANDROID
+	endmenu # Pipeline cache permissions
+endmenu # Pipeline

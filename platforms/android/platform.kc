@@ -1,0 +1,72 @@
+menu "Application Info"
+	config ANDROID_SDK_PATH
+		string "Android SDK path"
+		default "/usr/local/lib/android-sdk"
+
+	config ANDROID_NDK_PATH
+		string "Android NDK path"
+		default "/usr/local/lib/android-ndk"
+
+	config ANDROID_BUILD_TOOLS_PATH
+		string "Android build tools path"
+		default "/usr/local/lib/android-build-tools"
+
+	config ANDROID_TARGET_PLATFORM
+		int "Android target platform"
+		default 0
+		help
+			The version of Android SDK on which tests were carried out.
+			0 - is equal to version of current SDK.
+
+	menu "Key Info"
+		config APK_KEY_CN
+			string "Your first and last name"
+			default Unknown
+
+		config APK_KEY_OU
+			string "Your organizational unit"
+			default Unknown
+
+		config APK_KEY_OU
+			string "Your organizational unit"
+			default Unknown
+
+		config APK_KEY_O
+			string "Your organizational"
+			default Unknown
+
+		config APK_KEY_L
+			string "Your City or Locality"
+			default Unknown
+
+		config APK_KEY_ST
+			string "Your State or Province"
+			default Unknown
+
+		config APK_KEY_C
+			string "Your country code"
+			default Unknown
+
+		config APK_KEY_PASSWORD
+			string "Your key password"
+			default qwerty
+	endmenu # Key Info
+
+	menu "Target arch"
+		config ARCH_ARMV7
+			bool "ARMv7"
+			default n
+
+		config ARCH_ARMV8
+			bool "ARMv8"
+			default y
+
+		config ARCH_X86
+			bool "x86"
+			default n
+
+		config ARCH_X64
+			bool "x64"
+			default n
+	endmenu # Target arch
+endmenu # Android SDK

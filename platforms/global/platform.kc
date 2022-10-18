@@ -1,0 +1,33 @@
+menu "Logger Configuration"
+	config LOG_WARNING
+		default y
+		bool "Enable warning logs by default"
+
+	config LOG_INFO
+		default n
+		bool "Enable info logs by default"
+
+	config LOG_DEBUG
+		default n
+		bool "Enable debug logs by default"
+
+	config LOG_BUFFER_SIZE
+		default 4096
+		int "Log buffer size"
+
+	if PLATFORM_LINUX
+		config LOG_COLOR
+			default y
+			bool "Enable color output by default"
+	endif
+endmenu # Logger Configuration
+
+menu "Project Build"
+	config DEBUG_BUILD
+		bool "Debug build (CFLAGS += -g -O0)"
+		default n
+
+	config NATIVE_BUILD
+		bool "Native build (CFLAGS += -march=native)"
+		default n
+endmenu # Project Debugging

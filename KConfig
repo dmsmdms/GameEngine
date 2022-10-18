@@ -1,0 +1,42 @@
+mainmenu "GameEngine"
+
+config KCONFIG_ROOT_DIR_ENV
+	option env="KCONFIG_ROOT_DIR"
+	string
+
+config ENGINE_NAME
+	default "GameEngine"
+	string
+
+config ENGINE_VERSION_MAJOR
+	default 0
+	int
+
+config ENGINE_VERSION_MINOR
+	default 0
+	int
+
+config ENGINE_VERSION_PATCH
+	default 1
+	int
+
+menu "Project Info"
+	config PROJECT_NAME
+		default "untitled"
+		string "Project Name"
+
+	config PROJECT_VERSION_MAJOR
+		default 0
+		int "Project Version Major"
+
+	config PROJECT_VERSION_MINOR
+		default 0
+		int "Project Version Minor"
+
+	config PROJECT_VERSION_PATCH
+		default 1
+		int "Project Version Patch"
+endmenu # Project Info
+
+source "$KCONFIG_ROOT_DIR_ENV/platforms/global.kc"
+source "$KCONFIG_ROOT_DIR_ENV/renderers/global.kc"
