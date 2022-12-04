@@ -15,13 +15,15 @@
 #endif
 
 #define RK_ATOM_HELPER(str, exists) \
-	atom_helper(str, ARRAY_LEN(str) - 1, exists)
+	atomHelper(str, ARRAY_LEN(str) - 1, exists)
 
 static xcb_connection_t * connection = NULL;
 static xcb_atom_t atom_delete_window = 0;
 static xcb_window_t window = 0;
 
-static xcb_intern_atom_reply_t * atom_helper(const char * const str, const uint16_t length, const uint8_t exists) {
+static xcb_intern_atom_reply_t * atomHelper(const char * const str, const uint16_t length,
+											const uint8_t exists)
+{
 	xcb_intern_atom_cookie_t cookie = xcb_intern_atom(connection, exists, length, str);
 	return xcb_intern_atom_reply(connection, cookie, NULL);
 }

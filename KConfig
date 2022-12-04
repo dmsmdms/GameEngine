@@ -36,7 +36,15 @@ menu "Project Info"
 	config PROJECT_VERSION_PATCH
 		default 1
 		int "Project Version Patch"
+
+	config BLENDER_SUPPORT
+		bool "Enable Blender support"
+		default n
+		help
+			Say Y if your project scenes was made in Blender.
+			Also put your project.blend file into the project directory.
 endmenu # Project Info
 
 source "$KCONFIG_ROOT_DIR_ENV/platforms/global.kc"
 source "$KCONFIG_ROOT_DIR_ENV/renderers/global.kc"
+source "$KCONFIG_ROOT_DIR_ENV/tools/global.kc"

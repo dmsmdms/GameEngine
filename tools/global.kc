@@ -1,0 +1,3 @@
+if BLENDER_SUPPORT
+	source "$KCONFIG_ROOT_DIR_ENV/tools/blender/tool.kc"
+endif

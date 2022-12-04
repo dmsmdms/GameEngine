@@ -1,5 +1,15 @@
 get-prop = $(patsubst $(strip $(2))=%,%, $(shell grep $(2) $(1)))
 
+## Arch (TODO) ##
+
+ifdef CONFIG_PLATFORM_LINUX
+ARCH_x86 := y
+endif
+
+ifdef CONFIG_PLATFORM_WINDOWS
+ARCH_x86 := y
+endif
+
 ## Platform makefiles ##
 
 include $(PLATFORMS_DIR)/global/platform.mk

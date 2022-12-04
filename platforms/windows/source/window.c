@@ -33,18 +33,18 @@ void rkWindowCreate(void) {
 	RK_ASSERT(hInstance == NULL, NULL);
 
 	const WNDCLASSEX classEx = {
-		.cbSize         = sizeof(WNDCLASSEX),
-		.style          = 0,
-		.lpfnWndProc    = rkWindowEventHandler,
-		.cbClsExtra     = 0,
-		.cbWndExtra     = 0,
-		.hInstance      = hInstance,
-		.hIcon          = NULL,
-		.hCursor        = LoadCursor(NULL, IDC_ARROW),
-		.hbrBackground  = NULL,
-		.lpszMenuName   = NULL,
-		.lpszClassName  = CONFIG_ENGINE_NAME,
-		.hIconSm        = NULL,
+		.cbSize			= sizeof(WNDCLASSEX),
+		.style			= 0,
+		.lpfnWndProc	= rkWindowEventHandler,
+		.cbClsExtra		= 0,
+		.cbWndExtra		= 0,
+		.hInstance		= hInstance,
+		.hIcon			= NULL,
+		.hCursor		= LoadCursor(NULL, IDC_ARROW),
+		.hbrBackground	= NULL,
+		.lpszMenuName	= NULL,
+		.lpszClassName	= CONFIG_ENGINE_NAME,
+		.hIconSm		= NULL,
 	};
 
 	hClass = RegisterClassEx(&classEx);

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdarg.h>
+#include <stddef.h>
 
 #define rkLog(logLevel, msg, ...) \
 	rkLogTaged(logLevel, NULL, msg, ##__VA_ARGS__)

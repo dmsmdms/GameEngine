@@ -21,6 +21,7 @@ BUILD_DIR			:= $(PROJECT_DIR)/build
 BUILD_DIR_FULL		:= $(abspath $(BUILD_DIR))
 PLATFORMS_DIR		:= platforms
 RENDERERS_DIR		:= renderers
+TOOLS_DIR			:= tools
 
 ## Build OS ##
 
@@ -76,6 +77,7 @@ endif
 
 include $(RENDERERS_DIR)/global.mk
 include $(PLATFORMS_DIR)/global.mk
+include $(TOOLS_DIR)/global.mk
 
 ## Targets ##
 

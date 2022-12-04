@@ -3,6 +3,10 @@ TARGET			:= $(BUILD_DIR)/$(CONFIG_PROJECT_NAME)
 VPATH			:= $(VPATH) $(PLATFORM_DIR)/source
 VPATH			:= $(VPATH) $(BUILD_DIR)
 
+ifdef CONFIG_TESTS_SUPPORT
+TEST_TARGET	:= $(BUILD_DIR)/tests
+endif
+
 ## Compiler Flags ##
 
 CFLAGS	:= $(CFLAGS) -flto -I $(PLATFORM_DIR)/api
@@ -55,7 +59,7 @@ OBJECTS := $(OBJECTS) $(patsubst %.c, $(BUILD_DIR)/%.o, $(SOURCES))
 
 all: $(TARGET)
 
-$(TARGET): $(OBJECTS)
+$(TARGET): $(OBJECTS) $(TEST_TARGET)
 	@ gcc $(OBJECTS) -o $(TARGET) $(LDFLAGS)
 	$(info Linking $@)
 
@@ -63,3 +67,9 @@ $(BUILD_DIR)/%.o: %.c
 	@ mkdir -p $(@D)
 	@ gcc $(CFLAGS) $< -o $@
 	$(info Compilling $<)
+
+ifdef CONFIG_TESTS_SUPPORT
+$(TEST_TARGET): $(TEST_OBJECTS)
+	@ gcc $(TEST_OBJECTS) -o $(TEST_TARGET) $(LDFLAGS)
+	@ $(TEST_TARGET) --log-info=on --log-debug=on
+endif

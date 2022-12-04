@@ -30,4 +30,10 @@ menu "Project Build"
 	config NATIVE_BUILD
 		bool "Native build (CFLAGS += -march=native)"
 		default n
+
+	if PLATFORM_LINUX || PLATFORM_WINDOWS
+		config TESTS_SUPPORT
+			bool "Enable compile time tests"
+			default y
+	endif
 endmenu # Project Debugging
